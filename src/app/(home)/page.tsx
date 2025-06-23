@@ -1,10 +1,11 @@
 import Image from "next/image";
 
-export default function Home() {
+export default function Home({ children }) {
   return (
     <div>
       <Image src="/logo.svg" height={50} width={50} alt="Logo" />
       <p className="text-xl font-semibold tracking-tight"> NewTube2</p>
+      <div>{ children } </div>
     </div>
   )
 }

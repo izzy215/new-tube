@@ -1,13 +1,13 @@
-"use client"
 
-import { trpc } from "@/trpc/clent"
+import { trpc } from "@/trpc/server"
+import { PageClient } from "./client"
 
-export default function Home() {
-  const { data }  = trpc.hello.useQuery({ text: "antonio" })
-  console.log(data)
+export default async function Home() {
+  void trpc.hello.prefetch({ text: "antonio" })
+
   return (
     <div>
-      Client component says: {data?.greeting}
+      <PageClient />
     </div>
   )
 }

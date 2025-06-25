@@ -1,11 +1,13 @@
-import Image from "next/image";
+"use client"
 
-export default function Home({ children }) {
+import { trpc } from "@/trpc/clent"
+
+export default function Home() {
+  const { data }  = trpc.hello.useQuery({ text: "antonio" })
+  console.log(data)
   return (
     <div>
-      <Image src="/logo.svg" height={50} width={50} alt="Logo" />
-      <p className="text-xl font-semibold tracking-tight"> NewTube2</p>
-      <div>{ children } </div>
+      Client component says: {data?.greeting}
     </div>
   )
 }

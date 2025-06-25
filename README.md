@@ -34,3 +34,12 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+
+
+| 이름             | 역할                         | 어디에 쓰나?                       |
+| -------------- | -------------------------- | ----------------------------- |
+| **Clerk**      | 🔐 인증(Authentication) 서비스  | 로그인/회원가입, 유저관리                |
+| **ngrok**      | 🌐 로컬 서버를 외부에 노출           | webhook 테스트, 모바일에서 내 로컬 서버 접근 |
+| **neon.tech**  | 🗄️ 클라우드 PostgreSQL 데이터베이스 | 데이터 저장 (유저정보, 글 등)            |
+| **DrizzleORM** | 🧱 타입 안정성 높은 ORM           | TypeScript로 DB 쿼리 쉽게 쓰기       |

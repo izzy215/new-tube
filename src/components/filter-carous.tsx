@@ -1,4 +1,5 @@
 "use client";
+
 import {
     Carousel,
     CarouselApi,
@@ -8,6 +9,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Badge } from "@/components/ui/badge";
+//cn 함수는 Tailwind CSS 클래스명을 깔끔하게 병합(Merge)하고, 충돌되는 클래스는 자동 정리
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -78,17 +80,17 @@ export const FilterCarousel = ({
                      Array.from({ length: 14 }).map((_ ,index) => (
                         <CarouselItem key={index} 
                         className="pl-3 basis-auto"
-                        onClick={()=> onSelect(item.value)}>
+                        >
                             <Skeleton className="rounded-lg px-3 py-1 h-full text-sm w-[100px] font-semibold"> 
-
-
+                                &nbsp;
                             </Skeleton>
                         </CarouselItem>
                      ))}
                     {!isLoading && data.map((item) => (
                         <CarouselItem 
                         key={item.value}
-                        className="pl-3 basis-auto">
+                        className="pl-3 basis-auto"
+                        onClick={()=> onSelect(item.value)}>
                             <Badge
                               variant={value === null ? "default": "secondary"}
                           className="rounded-lg px-3 py-1 cursor-pointer whitespace-nowrap text-sm">
@@ -97,8 +99,8 @@ export const FilterCarousel = ({
                         </CarouselItem>
                     ))}
                 </CarouselContent>
-                <CarouselPrevious className="left-0 z-20"></CarouselPrevious>
-                <CarouselNext className="right-0 z-20"></CarouselNext>
+                <CarouselPrevious className="left-0 z-20" />
+                <CarouselNext className="right-0 z-20" />
             </Carousel> 
              {/* Right fade */}
             <div 

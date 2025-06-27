@@ -5,7 +5,9 @@ import { HydrateClient, trpc } from "@/trpc/server"
 export const dynamic ="force-dynamic";
 
 interface PageProps {
-  searchParams: Promise<{categoryId?: string}>
+  searchParams: Promise<{
+    categoryId?: string
+  }>
 }
 const Page = async ({ searchParams }: PageProps ) => {
   const { categoryId } = await searchParams;
@@ -13,11 +15,9 @@ const Page = async ({ searchParams }: PageProps ) => {
   void trpc.categories.getMany.prefetch()
 
   return (
-
     <HydrateClient>
       <HomeView categoryId={categoryId}/>
     </HydrateClient>
-    
   )
 };
 

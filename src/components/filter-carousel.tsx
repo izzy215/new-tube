@@ -9,6 +9,7 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Badge } from "@/components/ui/badge";
+
 //cn 함수는 Tailwind CSS 클래스명을 깔끔하게 병합(Merge)하고, 충돌되는 클래스는 자동 정리
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
@@ -39,11 +40,12 @@ export const FilterCarousel = ({
         if(!api) {
             return;
         }
+
         setCount(api.scrollSnapList().length);
         setCurrent(api.selectedScrollSnap() + 1);
 
         api.on("select", () => {
-            setCurrent(api.selectedScrollSnap() + 1)
+            setCurrent(api.selectedScrollSnap() + 1);
         })
     },[api]);
 
@@ -51,7 +53,7 @@ export const FilterCarousel = ({
         <div className="relative w-full">
             {/* Left fade */}
             <div 
-            className={cn(
+                className={cn(
                 "absolute left-12 top-0 bottom-0 w-12 z-10 bg-gradient-to-r from-white to-transparent pointer-events-none ",
                 current === 1 && "hidden"
             )}
@@ -76,6 +78,7 @@ export const FilterCarousel = ({
                         </Badge>
                     </CarouselItem>
                     )}
+
                     {isLoading && 
                      Array.from({ length: 14 }).map((_ ,index) => (
                         <CarouselItem key={index} 
@@ -85,27 +88,32 @@ export const FilterCarousel = ({
                                 &nbsp;
                             </Skeleton>
                         </CarouselItem>
-                     ))}
+                     ))
+                     }
+
                     {!isLoading && data.map((item) => (
                         <CarouselItem 
-                        key={item.value}
-                        className="pl-3 basis-auto"
-                        onClick={()=> onSelect(item.value)}>
+                            key={item.value}
+                            className="pl-3 basis-auto"
+                            onClick={()=> onSelect(item.value)}
+                            >
                             <Badge
-                              variant={value === null ? "default": "secondary"}
-                          className="rounded-lg px-3 py-1 cursor-pointer whitespace-nowrap text-sm">
+                              variant={value === item.value ? "default": "secondary"}
+                            className="rounded-lg px-3 py-1 cursor-pointer whitespace-nowrap text-sm"
+                            >
                             {item.label}
                             </Badge>
                         </CarouselItem>
                     ))}
+
                 </CarouselContent>
                 <CarouselPrevious className="left-0 z-20" />
                 <CarouselNext className="right-0 z-20" />
             </Carousel> 
              {/* Right fade */}
             <div 
-            className={cn(
-                "absolute right-12 top-0 bottom-0 w-12 z-10 bg-gradient-to-l from-white to-transparent pointer-evnets-none ",
+                className={cn(
+                "absolute right-12 top-0 bottom-0 w-12 z-10 bg-gradient-to-l from-white to-transparent pointer-events-none ",
                 current === count && "hidden"
             )}
             />

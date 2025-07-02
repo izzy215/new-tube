@@ -11,14 +11,13 @@ export const AuthButton = () => {
     return (
         <>
             <SignedIn>
-             
                 <UserButton>
                     <UserButton.MenuItems>
                         {/* Todo: Add user profile menu button */}
                         <UserButton.Link 
-                          label="Studio"
-                          href="/studio"
-                          labelIcon={<ClapperboardIcon className="size-4" />}
+                            label="Studio"
+                            href="/studio"
+                            labelIcon={<ClapperboardIcon className="size-4" />}
                         />
                         <UserButton.Action label="manageAccount"/>
                     </UserButton.MenuItems>

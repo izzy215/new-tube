@@ -24,11 +24,10 @@ export const StudioSidebar = () => {
                             <SidebarMenuItem>
                                 <SidebarMenuButton isActive={pathname === "/studio"} tooltip="Exit studio" asChild>
                                     <Link href ="/studio">
-                                        <VideoIcon className="size-5"> 
+                                        <VideoIcon className="size-5" /> 
                                             <span className="tet-sm">
                                             Content
                                             </span>
-                                        </VideoIcon>
                                     </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>
@@ -36,11 +35,10 @@ export const StudioSidebar = () => {
                                <SidebarMenuItem>
                                 <SidebarMenuButton tooltip="Exit studio" asChild>
                                     <Link href ="/">
-                                        <LogOutIcon className="size-5"> 
+                                        <LogOutIcon className="size-5" /> 
                                             <span className="text-sm">
                                             Exit studio
                                             </span>
-                                        </LogOutIcon>
                                     </Link>
                                 </SidebarMenuButton>
                             </SidebarMenuItem>

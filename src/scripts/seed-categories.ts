@@ -28,7 +28,7 @@ async function main() {
         const values = categoryNames.map((name) => ({
             name,
             description: `Videos related to ${name.toLowerCase()}`,
-        }))
+        }));
         
             await db.insert(categories).values(values);
         

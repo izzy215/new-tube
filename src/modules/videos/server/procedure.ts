@@ -11,6 +11,11 @@ export const videosRouter = createTRPCRouter ({
         //에러메시지 테스트
         // throw new TRPCError({code:"BAD_REQUEST", message: "에러메시지"})
 
+
+        //mux upload
+        // const upload  = 
+
+        //비디오 목록
         const [video] = await db
         .insert(videos)
         .values({

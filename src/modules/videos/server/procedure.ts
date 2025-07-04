@@ -1,5 +1,6 @@
 import { db } from "@/db";
 import { videos } from "@/db/schema";
+import { mux } from "@/lib/mux";
 import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { TRPCError } from "@trpc/server";
 
@@ -13,7 +14,24 @@ export const videosRouter = createTRPCRouter ({
 
 
         //mux upload
-        // const upload  = 
+        const upload  = await mux.video.uploads.create({
+          new_asset_settings:{
+            passthrough: userId,
+            playback_policy: ["public"],
+            input: [
+              {
+                generated_subtitles: [
+                  {
+                    language_code: "en",
+                    name:"English"
+                  }
+                ]
+              }
+            ]
+          },
+          cors_origin:"*" // TODO: In production, set to your url
+        })
+
 
         //비디오 목록
         const [video] = await db
@@ -21,11 +39,14 @@ export const videosRouter = createTRPCRouter ({
         .values({
             userId,
             title:"Untitled",      
+            muxStatus: "wating",
+            muxUploadId: upload.id,
           })
           .returning();
 
           return {
             video: video,
+            url: upload.url
           };
     })
 })

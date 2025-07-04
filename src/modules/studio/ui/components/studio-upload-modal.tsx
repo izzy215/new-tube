@@ -26,7 +26,13 @@ export const StudioUploadModal = () => {
                 open={!!create.data}
                 onOpenChange={() => {create.reset()}}
                 >
-                <StudioUploader />
+                {create.data?.url 
+                 ? <StudioUploader 
+                    endpoint={create.data.url} 
+                    onSuccess={() => {}}
+                    />
+                 : <Loader2Icon /> 
+                 }
             </ResponsiveModal>
             <Button variant="secondary" onClick={() => create.mutate()} disabled={create.isPending}>
                 {create.isPending ? <Loader2Icon className="animate-spin" />  : <PlusIcon /> }

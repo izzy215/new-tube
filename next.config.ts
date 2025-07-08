@@ -8,10 +8,17 @@ const nextConfig: NextConfig = {
     // }
   //lecture ver.
   images: {
-    remotePatterns: [{
-    protocol: "https",
-    hostname: "image.mux.com"
-    }]
+    remotePatterns: [
+    //   {
+    // protocol: "https",
+    // hostname: "image.mux.com"
+
+    // },
+      {
+        protocol: "https",
+        hostname: "utfs.io",
+      },
+  ]
   }
 };
 

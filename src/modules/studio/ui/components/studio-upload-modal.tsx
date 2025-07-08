@@ -1,6 +1,6 @@
 "use client";
 
-import { ResponsiveModal } from "@/components/responsive-dialog";
+import { ResponsiveModal } from "@/components/responsive-modal";
 import { Button } from "@/components/ui/button"
 import { StudioUploader } from "@/modules/home/ui/components/studio-uploader";
 import { trpc } from "@/trpc/client";
@@ -25,7 +25,7 @@ export const StudioUploadModal = () => {
         if(!create.data?.video.id) return;
 
         create.reset()
-        router.push(`/studio/vidios/${create.data.video.id}`);
+        router.push(`/studio/videos/${create.data.video.id}`);
     }
 
 

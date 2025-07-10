@@ -214,11 +214,11 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
     }
 
     //TODO: Change if deploying outside of VERCEL
-    const fulUrl = `${process.env.VERCEL_URL ||"http://localhost:3000"}/videos/${videoId}`;
+    const fullUrl = `${process.env.VERCEL_URL ||"http://localhost:3000"}/videos/${videoId}`;
     const [isCopied, setIsCopied] = useState(false);
 
     const onCopy = async () => {
-       await navigator.clipboard.writeText(fulUrl);
+       await navigator.clipboard.writeText(fullUrl);
        setIsCopied(true);
 
        setTimeout(() => {
@@ -436,9 +436,9 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                                             </p>    
 
                                         <div className="flex items-center gap-x-2">
-                                            <Link href={`/video/${video.id}`}>
+                                            <Link href={`/videos/${video.id}`}>
                                                 <p className="line-clamp-1 text-sm text-blue-500">
-                                                http://localhost:3000/123
+                                                  {fullUrl}
                                                 </p>
                                             </Link>
                                             <Button

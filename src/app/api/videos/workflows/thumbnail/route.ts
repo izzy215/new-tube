@@ -51,11 +51,11 @@ export const { POST } = serve(
         size: "1792x1024",
       },
       headers: {
-        authorization: `Barer ${process.env.OPENAI_API_KEY}`
+        authorization: `Bearer ${process.env.OPENAI_API_KEY}`
       }
     })
 
-    const tempThumbnailUrl = body.data[0]?.url;
+    const tempThumbnailUrl = body.data[0].url;
 
     if(!tempThumbnailUrl) {
         throw new Error("Bad request");

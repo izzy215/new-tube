@@ -1,4 +1,4 @@
-import { CommentsSection } from "../sections/comments-section";
+import { CommentsSection } from "@/modules/comments/ui/components/comments-section";
 import { SuggestionSection } from "../sections/suggestion-section";
 import { VideoSection } from "../sections/video-section";
 

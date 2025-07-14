@@ -6,6 +6,7 @@ import { eq, and} from "drizzle-orm";
 import { z } from "zod";
 
 export const subscriptionsRouter = createTRPCRouter({
+    
     create: protectedProcedure
         .input(z.object({ userId: z.string().uuid() }))
         .mutation(async ({ input, ctx }) =>{
@@ -28,7 +29,6 @@ export const subscriptionsRouter = createTRPCRouter({
         .input(z.object({ userId: z.string().uuid() }))
         .mutation(async ({ input, ctx }) =>{
             const { userId } = input;
-
             if( userId === ctx.user.id) {
                 throw new TRPCError({ code:"BAD_REQUEST" })
             }

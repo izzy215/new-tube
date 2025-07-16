@@ -17,10 +17,10 @@ interface VideoMenuProps {
 // TODO: implement whats left
 export const VideoMenu = ({
     videoId,
-    variant,
+    variant="ghost",
     onRemove
 }: VideoMenuProps) => { 
-    const onshare = () => {
+    const onShare = () => {
         const fullUrl = `${process.env.VERCEL_URL ||"http://localhost:3000"}/videos/${videoId}`;
         navigator.clipboard.writeText(fullUrl);
         toast.success("Link copied to the clipboard")
@@ -34,7 +34,7 @@ export const VideoMenu = ({
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" onClick={(e)=>e.stopPropagation()}>
-                <DropdownMenuItem onClick={onshare}>
+                <DropdownMenuItem onClick={onShare}>
                     <ShareIcon className="mr-2 size-4"/>
                         Share
                 </DropdownMenuItem>

@@ -33,6 +33,7 @@ export const CommentForm = ({
     const utils = trpc.useUtils();
     const create = trpc.comments.create.useMutation({
         onSuccess: () => {
+            //쿼리 캐시 데이터 무효화후 새로고침 1. 모든 댓글, 2. 대댓글
             utils.comments.getMany.invalidate({ videoId });
             utils.comments.getMany.invalidate({ videoId, parentId });
 

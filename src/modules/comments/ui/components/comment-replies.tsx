@@ -1,4 +1,4 @@
-import { DEFAULT_LIMIT } from "@/constans";
+import { DEFAULT_LIMIT } from "@/constants";
 import { trpc } from "@/trpc/client";
 import { CornerDownRightIcon, Loader2Icon } from "lucide-react";
 import { CommentItem } from "./comment-item";

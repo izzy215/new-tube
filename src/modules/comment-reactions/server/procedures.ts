@@ -4,7 +4,7 @@ import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { eq, and} from "drizzle-orm";
 import { z } from "zod";
 
-export const commentReactionRouter = createTRPCRouter({
+export const commentReactionsRouter = createTRPCRouter({
     like: protectedProcedure
         .input(z.object({ commentId: z.string().uuid() }))
         .mutation(async ({ input, ctx }) =>{
@@ -59,7 +59,7 @@ export const commentReactionRouter = createTRPCRouter({
             const { commentId } = input;
             const { id: userId} = ctx.user;
 
-            const [existingCommnetReactionDislike] = await db
+            const [existingCommentReactionDislike] = await db
                 .select()
                 .from(commentReactions)
                 .where(
@@ -70,7 +70,7 @@ export const commentReactionRouter = createTRPCRouter({
                   )
                 );
 
-            if (existingCommnetReactionDislike) {
+            if (existingCommentReactionDislike) {
 
                 const [deleteViewerReaction] = await db
                   .delete(commentReactions)

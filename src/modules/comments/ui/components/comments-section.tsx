@@ -1,7 +1,7 @@
 "use client";
 
 import { InfiniteScroll } from "@/components/infinite-scroll";
-import { DEFAULT_LIMIT } from "@/constans";
+import { DEFAULT_LIMIT } from "@/constants";
 import { CommentForm } from "@/modules/comments/ui/components/comment-form";
 import { CommentItem } from "@/modules/comments/ui/components/comment-item";
 import { trpc } from "@/trpc/client";
@@ -16,7 +16,7 @@ interface CommentSectionProps {
 
 export const CommentsSection  = ({ videoId }: CommentSectionProps) => {
     return (
-        <Suspense fallback={<CommnetsSectionSkeleton/>}>
+        <Suspense fallback={<CommentsSectionSkeleton/>}>
             <ErrorBoundary fallback={<p>Error</p>}>
                 <CommentsSectionSuspense videoId = {videoId} />
             </ErrorBoundary>
@@ -24,7 +24,7 @@ export const CommentsSection  = ({ videoId }: CommentSectionProps) => {
     )
 }
 
-const CommnetsSectionSkeleton = () => {
+const CommentsSectionSkeleton = () => {
     return (
         <div className="mt-6 flex justify-center items-center">
             <Loader2Icon  className="text-muted-foreground size-7 animate-spin"/>
@@ -44,7 +44,7 @@ export const CommentsSectionSuspense = ({ videoId }: CommentSectionProps) => {
         <div className="mt-6">
             <div className="flex flex-col gap-6">
                 <h1 className="text-xl font-bold">
-                    { comments.pages[0].totalCount } Commnets
+                    { comments.pages[0].totalCount } Comments
                 </h1>
                 <CommentForm videoId={ videoId }  />
                 <div className="flex flex-col gap-4 mt-2">

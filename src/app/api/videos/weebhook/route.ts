@@ -1,4 +1,4 @@
-//video weebhok
+//video webhook
 
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
@@ -29,7 +29,7 @@ type WebhookEvent =
 export const POST = async (request: Request) => {
     
     if(!SIGNING_SECRET) {
-        throw new Error("MUX_WEEBHOOK_SECRET is not set");
+        throw new Error("MUX_WEBHOOK_SECRET is not set");
     }
 
     const headersPayload = await headers();
@@ -154,7 +154,7 @@ export const POST = async (request: Request) => {
             console.log("Track ready")
 
 
-            // Typescript incorrenctly says that asset_id dose not exist
+            // Typescript incorrectly says that asset_id dose not exist
             const assetId = data.asset_id;
             const trackId = data.id;
             const status = data.status;

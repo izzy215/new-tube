@@ -127,6 +127,65 @@ export const videosRouter = createTRPCRouter ({
         
       })
     }),
+  revalidate: protectedProcedure
+      .input(z.object({ id: z.string().uuid() }))
+      .mutation(async ({ ctx, input })  => {
+        const { id: userId } = ctx.user;
+        
+        const[existingVideo] = await db 
+          .select()
+          .from(videos)
+          .where(and(
+            eq(videos.id, input.id),
+            eq(videos.userId, userId),
+          ));
+
+        if (!existingVideo) {
+          throw new TRPCError({ code: "NOT_FOUND" });
+        }
+
+        if(!existingVideo.muxUploadId) {
+          throw new TRPCError({ code: "BAD_REQUEST" });
+        }
+
+        const upload = await mux.video.uploads.retrieve(
+          existingVideo.muxUploadId
+        );
+
+        if (!upload || !upload.asset_id)  {
+          throw new TRPCError({ code: "BAD_REQUEST" });
+        }
+
+        const asset = await mux.video.assets.retrieve(
+          upload.asset_id
+        );
+
+
+        if(!asset) {
+            throw new TRPCError({ code: "BAD_REQUEST" });
+        }
+
+        const playbackId = asset.playback_ids?.[0].id;
+        const duration = asset.duration ? Math.round(asset.duration * 1000) : 0;
+
+        // TODO: Potentially find a way to revalidate trackId and trackStatus as well 
+
+        const [updatedVideo] = await db
+          .update(videos)
+          .set({
+            muxStatus: asset.status,
+            muxPlaybackId: playbackId,
+            muxAssetId: asset.id,
+            duration,
+          })
+          .where(and(
+            eq(videos.id, input.id),
+            eq(videos.userId, userId),
+          ))
+          .returning()
+
+          return updatedVideo;
+    }),
   restoreThumbnail:protectedProcedure
       .input(z.object({ id: z.string().uuid() }))
       .mutation(async ({ ctx, input}) => {
@@ -242,7 +301,6 @@ export const videosRouter = createTRPCRouter ({
         //에러메시지 테스트
         // throw new TRPCError({code:"BAD_REQUEST", message: "에러메시지"})
 
-
         //mux upload
         const upload  = await mux.video.uploads.create({
           new_asset_settings:{
@@ -269,7 +327,7 @@ export const videosRouter = createTRPCRouter ({
         .values({
             userId,
             title:"Untitled",      
-            muxStatus: "wating",
+            muxStatus: "waiting",
             muxUploadId: upload.id,
           })
           .returning();

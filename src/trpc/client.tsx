@@ -8,6 +8,7 @@ import { createTRPCReact } from '@trpc/react-query';
 import { useState } from 'react';
 import { makeQueryClient } from './query-client';
 import type { AppRouter } from './routers/_app';
+import { APP_URL } from '@/constants';
 
 
 export const trpc = createTRPCReact<AppRouter>();
@@ -26,7 +27,7 @@ function getUrl() {
     if (typeof window !== 'undefined') return '';
     // process.env.NEST_PUBLIC_APP_URL
     //TODO :vercel 배포 테스트 
-    if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+    if (APP_URL) return `https://${APP_URL}`;
     return 'http://localhost:3000';
   })();
   return `${base}/api/trpc`;

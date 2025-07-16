@@ -37,7 +37,7 @@ export const VideoTopRowSkeleton = () => {
 }
 
 export const VideoTopRow = ({ video }: VideoTopRowProps) => {
-    const compactkViews = useMemo(() =>{
+    const compactViews = useMemo(() =>{
         return Intl.NumberFormat("en",{
             notation:"compact"
         }).format(video.viewCount)
@@ -76,7 +76,7 @@ export const VideoTopRow = ({ video }: VideoTopRowProps) => {
                 </div>
             </div>
             <VideoDescription 
-              compactViews={compactkViews}
+              compactViews={compactViews}
               expandedViews={expandedViews}
               compactDate={compactDate}
               expandedDate={expandedDate}

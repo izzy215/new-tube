@@ -56,6 +56,7 @@ import { VideoPlayer } from "@/modules/videos/ui/components/video-player";
 import { THUMBNAIL_FALLBACK } from "@/modules/videos/constants";
 import { ThumbnailUploadModal } from "@/modules/studio/ui/components/thumbnail-upload-madal";
 import { ThumbnailGenerateModal } from "../components/thumbnail-generate-modal";
+import { APP_URL } from "@/constants";
 
 
 
@@ -170,7 +171,19 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
         },
     });
 
-    const generateDescriptnion = trpc.videos.generateDescription.useMutation({
+    const revalidate = trpc.videos.revalidate.useMutation({
+        onSuccess: () => {
+            utils.studio.getMany.invalidate();
+            utils.studio.getOne.invalidate({ id: videoId});
+            toast.success("비디오 상태확인");
+
+        },
+        onError: () => {
+            toast.error("something went go wong")
+        },
+    });
+
+    const generateDescription = trpc.videos.generateDescription.useMutation({
         onSuccess: () => {
             toast.success("Background job started", {description: "This may take some time" });
 
@@ -214,7 +227,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
     }
 
     //TODO: Change if deploying outside of VERCEL
-    const fullUrl = `${process.env.VERCEL_URL ||"http://localhost:3000"}/videos/${videoId}`;
+    const fullUrl = `${APP_URL ||"http://localhost:3000"}/videos/${videoId}`;
     const [isCopied, setIsCopied] = useState(false);
 
     const onCopy = async () => {
@@ -256,7 +269,11 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                                     </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end">
-                                    <DropdownMenuItem onClick={() =>remove.mutate({ id:videoId})}>
+                                    <DropdownMenuItem onClick={() =>revalidate.mutate({ id: videoId})}>
+                                        <RotateCcwIcon className="size-4 mr-2" />
+                                        Revalidate
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem onClick={() =>remove.mutate({ id: videoId})}>
                                         <TrashIcon className="size-4 mr-2" />
                                         Delete
                                     </DropdownMenuItem>
@@ -310,11 +327,11 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                                             size="icon"
                                             variant="outline"
                                             className="rounded-full size-6 [&_svg]:size-3"
-                                            onClick={() => generateDescriptnion.mutate({ id: videoId })}    
-                                            disabled={generateDescriptnion.isPending || !video.muxTrackId}
+                                            onClick={() => generateDescription.mutate({ id: videoId })}    
+                                            disabled={generateDescription.isPending || !video.muxTrackId}
                                         
                                         >
-                                            {generateDescriptnion.isPending
+                                            {generateDescription.isPending
                                             ? <Loader2Icon className="animate-spin" />
                                             : <SparklesIcon />
                                             }
@@ -354,7 +371,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                                                             type="button"
                                                             size="icon"
                                                             className="bg-black/50 hover:bg-black/50 absolute top-1 right-1 rounded-full opacity-100 md:opacity-0 group-hover:opacity-100
-                                                            duraation-300 size-7"
+                                                            duration-300 size-7"
                                                             >
                                                                 <MoreVerticalIcon className="text-white" />
                                                             </Button>

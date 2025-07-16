@@ -5,7 +5,7 @@ import { Suspense } from "react"
 import { format } from "date-fns";
 import { ErrorBoundary } from "react-error-boundary"
 
-import { DEFAULT_LIMIT } from "@/constans"
+import { DEFAULT_LIMIT } from "@/constants"
 import { trpc } from "@/trpc/client"
 import { Skeleton } from "@/components/ui/skeleton";
 import { InfiniteScroll } from "@/components/infinite-scroll"

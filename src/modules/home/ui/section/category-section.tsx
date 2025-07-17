@@ -7,7 +7,7 @@ import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 
 interface CategoriesSectionProps {
-  categoryId?: string;
+    categoryId?: string;
 }
 
 export const CategoriesSection = ({ categoryId }: CategoriesSectionProps) => {

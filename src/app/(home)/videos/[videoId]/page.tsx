@@ -1,9 +1,10 @@
 import { HydrateClient, trpc } from "@/trpc/server";
 
 import { VideoView } from "@/modules/videos/ui/views/video-view";
-import { transformTRPCResponse } from "@trpc/server";
 
 import { DEFAULT_LIMIT } from "@/constants";
+
+export const dynamic = 'force-dynamic'
 
 interface PageProps {
     params: Promise<{

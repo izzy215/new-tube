@@ -3,30 +3,39 @@
 import { Button } from "@/components/ui/button";
 import { APP_URL } from "@/constants";
 import { SearchIcon, XIcon } from "lucide-react"
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react"
 
 export const SearchInput = () => {
     const router = useRouter();
+    const searchParams = useSearchParams();
+    
+    const query = searchParams.get("query") || "";
+    const categoryId = searchParams.get("categoryId") || "";
 
-    const [value, setValue] = useState("");
+    const [value, setValue] = useState(query);
 
     const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        console.log("handleSearch start")
         // const url = new URL("/search", process.env.VERCEL_URL)
-        const url = new URL("/search", APP_URL ? `https://${APP_URL}` : "http://localhost:3000")
+        const url = new URL("/search", APP_URL)
         const newQuery = value.trim();
 
         url.searchParams.set("query", encodeURIComponent(newQuery));
-console.log(url)
-        if(newQuery === "") {
-            url.searchParams.delete("query");
 
-            setValue(newQuery);
-            router.push(url.toString());
+        if(categoryId) {
+          url.searchParams.set("categoryId", categoryId);
         }
-    }
+
+        if (newQuery === "") {
+          url.searchParams.delete("query");
+        }
+            
+          setValue(newQuery);
+          router.push(url.toString());
+        }
 
 
     return ( 
@@ -50,7 +59,7 @@ console.log(url)
                   )}
             </div>
             <button
-              
+              // disabled={!value.trim()}
               type="submit" 
               className="px-5 py-2.5 bg-gray-100 border border-l-0 rounded-r-full hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed">
                 <SearchIcon className="size-5"/>

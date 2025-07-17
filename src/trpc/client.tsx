@@ -25,10 +25,8 @@ function getQueryClient() {
 function getUrl() {
   const base = (() => {
     if (typeof window !== 'undefined') return '';
-    // process.env.NEST_PUBLIC_APP_URL
-    //TODO :vercel 배포 테스트 
-    if (APP_URL) return `https://${APP_URL}`;
-    return 'http://localhost:3000';
+    // Crucial to modify in .env to production domain ( including protogol)
+    return APP_URL;
   })();
   return `${base}/api/trpc`;
 }

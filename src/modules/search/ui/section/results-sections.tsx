@@ -17,9 +17,10 @@ interface ResultsSectionProps {
 
 export const ResultsSection = (props: ResultsSectionProps) =>{
     return (
+        // key property 로 fetch 요청
         <Suspense 
           key={`${props.query}-${props.categoryId}`}
-        fallback={<ResultsSectionSkeleton />}>
+          fallback={<ResultsSectionSkeleton />}>
             <ErrorBoundary fallback={<p>Error</p>}>
                 <ResultsSectionSuspense {...props} />
             </ErrorBoundary>
@@ -30,7 +31,7 @@ export const ResultsSection = (props: ResultsSectionProps) =>{
 const ResultsSectionSkeleton = () => {
     return (
         <div>
-            <div className="hidden flex-col gap-4 md:flex"> 
+        <div className="hidden flex-col gap-4 md:flex"> 
                 {Array.from({ length: 5 }).map((_, index) => (
                     <VideoRowCardSkeleton key={index}/>
                 ))}

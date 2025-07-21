@@ -12,6 +12,7 @@ import {
 import Link from "next/link";
 
 import { useAuth, useClerk } from "@clerk/nextjs"
+import { usePathname } from "next/navigation";
 
 
 
@@ -40,6 +41,7 @@ export const PersonalSection = () => {
 
     const clerk = useClerk();
     const { isSignedIn } = useAuth();
+    const pathname = usePathname()
 
     return (
         <SidebarGroup>
@@ -47,12 +49,12 @@ export const PersonalSection = () => {
             <SidebarGroupContent>
                 <SidebarMenu>
                     {items.map((item) => 
-                      <SidebarMenuItem
+                    <SidebarMenuItem
                         key={item.title}>
                             <SidebarMenuButton
                                 tooltip={item.title}
                                 asChild
-                                isActive={false} //Todo : Change to look at current pathname
+                                isActive={pathname === item.url} 
                                 onClick={ (e) => {
                                     if(!isSignedIn && item.auth){
                                         e.preventDefault();

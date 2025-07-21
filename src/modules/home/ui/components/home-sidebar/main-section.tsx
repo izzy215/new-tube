@@ -10,6 +10,7 @@ import {
 
 import Link from "next/link";
 import { useAuth, useClerk } from "@clerk/nextjs"
+import { usePathname } from "next/navigation";
 
 
 const items = [
@@ -34,6 +35,7 @@ const items = [
 export const MainSection = () => {
     const clerk = useClerk();
     const { isSignedIn }= useAuth();
+    const pathname = usePathname();
 
     return (
         <SidebarGroup>
@@ -44,7 +46,7 @@ export const MainSection = () => {
                             <SidebarMenuButton
                                 tooltip={item.title}
                                 asChild
-                                isActive={false} //Todo : Change to look at current pathname
+                                isActive={pathname === item.url} 
                                 onClick={ (e) => {
                                     //로그인 안되어있을때 로그인 화면 
                                     if(!isSignedIn && item.auth) {

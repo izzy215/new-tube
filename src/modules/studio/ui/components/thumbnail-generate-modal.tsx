@@ -54,10 +54,10 @@ export const ThumbnailGenerateModal = ({
 
     const onSubmit = (values:z.infer<typeof formSchema>) => {
 
-       generateThumbnail.mutate({
-           id: videoId,
-           prompt: values.prompt,
-       })
+        generateThumbnail.mutate({
+            id: videoId,
+            prompt: values.prompt,
+        })
     }
     
     return (
@@ -65,39 +65,39 @@ export const ThumbnailGenerateModal = ({
             title="Upload a thumbnail"
             open={open}
             onOpenChange={onOpenChange}>
-      
+
             <Form {...form}>
                 <form 
-                  onSubmit={form.handleSubmit(onSubmit)}
-                  className="flex flex-col gap-4"
-                  >
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="flex flex-col gap-4"
+                >
                     <FormField 
-                      control={form.control}
-                      name="prompt"
-                      render={({ field }) => (
+                        control={form.control}
+                        name="prompt"
+                        render={({ field }) => (
                         <FormItem>
                             <FormLabel>Prompt</FormLabel>
                             <FormControl>
                                 <Textarea 
-                                  {...field}
-                                  className="resize-none"
-                                  cols={30}
-                                  rows={5}
-                                  placeholder="A description of wantted thumbnail"
+                                    {...field}
+                                    className="resize-none"
+                                    cols={30}
+                                    rows={5}
+                                    placeholder="A description of wanted thumbnail"
                                     />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
-                      )}
-                      />
+                        )}
+                    />
                     <div className="flex justify-end">
                         <Button 
-                          disabled={generateThumbnail.isPending}
-                          type="submit">
+                            disabled={generateThumbnail.isPending}
+                            type="submit">
                             Generate
                         </Button>
                     </div>
-                  </form>
+                </form>
             </Form>
 
         </ResponsiveModal>

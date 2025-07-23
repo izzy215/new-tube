@@ -73,7 +73,6 @@ export const VideoSectionSuspense = ({
 
     return (
         <div>
-            {/* desktop Mode */}
             <div className="flex flex-col gap-4 gap-y-10 md:hidden">
                 {videos.pages
                     .flatMap((page) => page.items)
@@ -90,7 +89,12 @@ export const VideoSectionSuspense = ({
                 {videos.pages
                     .flatMap((page) => page.items)
                     .map((video) => (
-                        <VideoRowCard key={video.id} data={video} size="compact" />
+                        <VideoRowCard 
+                            key={video.id} 
+                            data={video} 
+                            size="compact" 
+                            onRemove={()=>removeVideo.mutate({playlistId, videoId: video.id })} 
+                            />
                     ))
                 }
             </div>

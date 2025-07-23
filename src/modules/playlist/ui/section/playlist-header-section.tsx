@@ -57,7 +57,7 @@ export const PlaylistHeaderSectionSuspense = ({
     return (
         <div className="flex justify-between items-center">
             <div>
-                <h1 className="text-2xml font-bold">History</h1>
+                <h1 className="text-2xml font-bold">{playlist.name}</h1>
                 <p className="text-xs text-muted-foreground">
                     Videos from the playlist
                 </p>

@@ -23,9 +23,9 @@ export const VideoSection = ({ videoId }: VideoSectionProps) => {
             </ErrorBoundary>
         </Suspense>
     )
- }
+}
 
- const VideoSectionSkeleton = () => {
+const VideoSectionSkeleton = () => {
     return (
         <>
         <VideoPlayerSkeleton />
@@ -33,9 +33,9 @@ export const VideoSection = ({ videoId }: VideoSectionProps) => {
         </>
 
     );
- }
+}
 
- const VideoSectionSuspense = ({videoId}: VideoSectionProps) => {
+const VideoSectionSuspense = ({videoId}: VideoSectionProps) => {
     const { isSignedIn } = useAuth();
 
     const utils = trpc.useUtils();
@@ -69,4 +69,4 @@ export const VideoSection = ({ videoId }: VideoSectionProps) => {
             <VideoTopRow video={video} />
         </>
     )
- }
+}

@@ -28,6 +28,7 @@ const SearchInputSuspense = () => {
         e.preventDefault();
 
         console.log("handleSearch start")
+        console.log('searchAPP_URL::',APP_URL)
         // const url = new URL("/search", process.env.VERCEL_URL)
         const url = new URL("/search", APP_URL)
         const newQuery = value.trim();

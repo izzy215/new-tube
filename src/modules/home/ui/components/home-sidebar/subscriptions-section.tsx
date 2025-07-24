@@ -1,5 +1,5 @@
 "use client";
-import {  HistoryIcon,  ListIcon,  ListVideoIcon,  ThumbsUpIcon, } from "lucide-react";
+import {ListIcon } from "lucide-react";
 
 import { 
     SidebarGroup, 
@@ -11,7 +11,6 @@ import {
 
 import Link from "next/link";
 
-import { useAuth, useClerk } from "@clerk/nextjs"
 import { usePathname } from "next/navigation";
 import { trpc } from "@/trpc/client";
 import { DEFAULT_LIMIT } from "@/constants";

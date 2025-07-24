@@ -4,8 +4,6 @@ import { eq, and, or, lt, desc, ilike, getTableColumns } from "drizzle-orm"
 import { db } from "@/db";
 import { users, videoReactions, videos, videoViews } from "@/db/schema";
 import { baseProcedure, createTRPCRouter } from "@/trpc/init";
-import { cursorTo } from "readline";
-import { TRPCError } from "@trpc/server";
 
 export const searchRouters = createTRPCRouter({
     getMany: baseProcedure

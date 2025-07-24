@@ -5,7 +5,7 @@ import { UTApi } from "uploadthing/server";
 import { db } from "@/db";
 import { mux } from "@/lib/mux";
 import { TRPCError } from "@trpc/server";
-import { subscriptions, users, videoReactions, videoReactionSelectSchema, videos, videoUpdateSchema, videoViews } from "@/db/schema";
+import { subscriptions, users, videoReactions, videos, videoUpdateSchema, videoViews } from "@/db/schema";
 import { baseProcedure, createTRPCRouter, protectedProcedure } from "@/trpc/init";
 import { workflow } from "@/lib/workflow";
 
@@ -314,6 +314,8 @@ export const videosRouter = createTRPCRouter ({
       body: {userId, videoId: input.id}
       
     })
+    
+    return workflowRunId;
   }),
   generateTitle: protectedProcedure
   .input(z.object({ id: z.string().uuid() }))
@@ -325,6 +327,8 @@ export const videosRouter = createTRPCRouter ({
       body: {userId, videoId: input.id}
       
     })
+
+    return workflowRunId;
   }),
   generateThumbnail: protectedProcedure
     .input(z.object({ id: z.string().uuid(), prompt: z.string().min(10) }))
@@ -336,6 +340,8 @@ export const videosRouter = createTRPCRouter ({
         body: {userId, videoId: input.id, prompt: input.prompt },
         
       })
+
+      return workflowRunId;
     }),
   revalidate: protectedProcedure
       .input(z.object({ id: z.string().uuid() }))

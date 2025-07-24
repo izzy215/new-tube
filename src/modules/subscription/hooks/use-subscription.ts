@@ -2,7 +2,6 @@ import { toast } from "sonner";
 import { useClerk } from "@clerk/nextjs";
 
 import { trpc } from "@/trpc/client";
-import { is } from "drizzle-orm";
 
 interface UseSubscriptionProps {
     userId: string;

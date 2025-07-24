@@ -42,7 +42,7 @@ export const CommentForm = ({
             onSuccess?.();
         }, 
         onError: (error) => {
-            toast.error("something whent wrong")
+            toast.error("something went wrong")
 
            if(error.data?.code === "UNAUTHORIZED") {
             clerk.openSignIn();

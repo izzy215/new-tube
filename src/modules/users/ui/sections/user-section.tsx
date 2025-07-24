@@ -4,7 +4,6 @@ import { trpc } from "@/trpc/client";
 import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { UserPageBanner, UserPageBannerSkeleton } from "../components/user-page-banner";
-import { Skeleton } from "@/components/ui/skeleton"; 
 import { UserPageInfo, UserPageInfoSkeleton } from "../components/user-page-info";
 import { Separator } from "@/components/ui/separator";
 

@@ -99,11 +99,11 @@ export const CommentItem = ({
                     <div className="flex items-center gap-2 mt-1">
                         <div className="flex items-center">
                             <Button
-                              disabled={like.isPending}
-                              variant="ghost"
-                              size="icon"
-                              className="size-8"
-                              onClick={()=>like.mutate({ commentId: comment.id})}
+                                disabled={like.isPending}
+                                variant="ghost"
+                                size="icon"
+                                className="size-8"
+                                onClick={()=>like.mutate({ commentId: comment.id})}
                                 >
                                 <ThumbsUp 
                                 className={cn(
@@ -131,10 +131,10 @@ export const CommentItem = ({
                         </div>
                         {variant === "comment" && (
                             <Button
-                              variant="ghost"
-                              size="sm"
-                              className="h-8"
-                              onClick={()=> setIsReplyOpen(true)}>
+                                variant="ghost"
+                                size="sm"
+                                className="h-8"
+                                onClick={()=> setIsReplyOpen(true)}>
                                 Reply
                             </Button>
                         )}
@@ -147,10 +147,12 @@ export const CommentItem = ({
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
+                    {variant === "comment" && (
                         <DropdownMenuItem onClick={()=> setIsReplyOpen(true)}>
                             <MessageSquareIcon className="size-4"/>
                                 Reply
                         </DropdownMenuItem>
+                    )}
                     {comment.user.clerkId === userId && (
                         <DropdownMenuItem onClick={()=>remove.mutate({id:comment.id})}>
                             <Trash2Icon className="size-4"/>
@@ -168,8 +170,8 @@ export const CommentItem = ({
                       videoId={comment.videoId}
                       onCancel={()=>setIsReplyOpen(false)}
                       onSuccess={() => {
-                        setIsRepliesOpen(false);
-                        setIsReplyOpen(true);
+                        setIsRepliesOpen(true);
+                        setIsReplyOpen(false);
                       }}
                       />
 

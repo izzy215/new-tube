@@ -20,12 +20,13 @@ export const CommentReplies = ({
         hasNextPage,
         isFetchingNextPage,
         } = trpc.comments.getMany.useInfiniteQuery({
-        limit: DEFAULT_LIMIT,
-        videoId,
-        parentId,
-    }, {
-        getNextPageParam: (lastPage) => lastPage.nextCursor,
-    });
+            limit: DEFAULT_LIMIT,
+            videoId,
+            parentId,
+        }, {
+            getNextPageParam: (lastPage) => lastPage.nextCursor,
+        }
+    );
 
     return (
         <div className="pl-14">
@@ -36,7 +37,7 @@ export const CommentReplies = ({
                     </div>
                 )}
                 {!isLoading && 
-                  data?.pages
+                    data?.pages
                     .flatMap((page) => page.items)
                     .map((comment) => (
                         <CommentItem key={comment.id} comment={comment} variant="reply"/>
@@ -45,11 +46,11 @@ export const CommentReplies = ({
             </div>
             {hasNextPage && (
                 <Button
-                  variant="tertiary"
-                  size="sm"
-                  onClick={() => fetchNextPage()}
-                  disabled={isFetchingNextPage}
-                  >
+                    variant="tertiary"
+                    size="sm"
+                    onClick={() => fetchNextPage()}
+                    disabled={isFetchingNextPage}
+                >
                     <CornerDownRightIcon />
                     Show more replies
                 </Button>

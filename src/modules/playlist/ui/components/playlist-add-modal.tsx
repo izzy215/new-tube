@@ -1,4 +1,3 @@
-import { z } from "zod";
 
 import { trpc } from "@/trpc/client";
 import { Loader2Icon, SquareCheckIcon, SquareIcon } from "lucide-react";
@@ -16,9 +15,6 @@ interface PlaylistAddModalProps {
     videoId: string;
 };
 
-const formSchema = z.object({
-    name: z.string().min(1)
-})
 
 export const PlaylistAddModal = ({
     open,

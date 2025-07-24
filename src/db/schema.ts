@@ -265,7 +265,7 @@ export const commentReactions = pgTable("comment_reactions", {
 ]);
 
 //댓글반응관계
-export const commentReactionRelations = relations(commentReactions, ({ one, many }) => ({
+export const commentReactionRelations = relations(commentReactions, ({ one }) => ({
   user: one(users, {
     fields: [commentReactions.userId],
     references: [users.id],
@@ -278,7 +278,7 @@ export const commentReactionRelations = relations(commentReactions, ({ one, many
 
 
 //비디오뷰관계
-export const videoViewRelations = relations(videoViews, ({ one, many }) => ({
+export const videoViewRelations = relations(videoViews, ({ one }) => ({
   user: one(users, {
     fields: [videoViews.userId],
     references: [users.id],
@@ -309,7 +309,7 @@ export const videoReactions = pgTable("video_reactions", {
   }),
 ])
 
-export const videoReactionRelations = relations(videoReactions, ({ one, many }) => ({
+export const videoReactionRelations = relations(videoReactions, ({ one }) => ({
   user: one(users, {
     fields: [videoReactions.userId],
     references: [users.id],

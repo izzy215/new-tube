@@ -13,15 +13,16 @@ export const playlistsRouter =  createTRPCRouter ({
                 const { id } = input;
                 const { id: userId } = ctx.user;
                 
-                const [existingPlaylist] = await db
-                    .select()
-                    .from(playlists)
-                    .where(
-                        and(
-                            eq(playlists.id, id),
-                            eq(playlists.userId, userId)
-                        )
-                    );
+                //eslint-disabled-next-line @typescript-eslint/no-unused-vars
+                // const [existingPlaylist] = await db
+                //     .select()
+                //     .from(playlists)
+                //     .where(
+                //         and(
+                //             eq(playlists.id, id),
+                //             eq(playlists.userId, userId)
+                //         )
+                //     );
                     
                     const [deletedPlaylist] = await db
                     .delete(playlists)

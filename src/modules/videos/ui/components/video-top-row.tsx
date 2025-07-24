@@ -9,7 +9,7 @@ import { VideoReactions } from "./video-reactions";
 
 import { VideoGetOneOutput } from "../../types"
 import { VideoDescription } from "./video-description";
-import { ko } from "date-fns/locale";
+// import { ko } from "date-fns/locale";
 
 interface VideoTopRowProps {
     video: VideoGetOneOutput;

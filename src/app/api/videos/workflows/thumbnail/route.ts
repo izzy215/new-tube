@@ -4,7 +4,6 @@ import { serve } from "@upstash/workflow/nextjs"
 
 import { db } from "@/db";
 import { videos } from "@/db/schema";
-import { isThisQuarter } from "date-fns";
 
 
 interface InputType { 

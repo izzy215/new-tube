@@ -7,8 +7,6 @@ import { Suspense } from "react";
 import { ErrorBoundary } from "react-error-boundary";
 import { InfiniteScroll } from "@/components/infinite-scroll";
 
-import { VideoGridCardSkeleton } from "@/modules/videos/ui/components/video-grid-card";
-import { VideoRowCardSkeleton } from "@/modules/videos/ui/components/video-row-card";
 import { toast } from "sonner";
 import { SubscriptionItem, SubscriptionItemSkeleton } from "../components/subscription-item";
 

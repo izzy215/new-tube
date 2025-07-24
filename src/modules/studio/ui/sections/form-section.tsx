@@ -353,7 +353,10 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                             <FormField 
                                 control={form.control}
                                 name="categoryId"
-                                render={({ field }) => {
+                                //eslint-disabled-next-line @typescript-eslint/no-unused-vars
+                                render={({ 
+                                    // field
+                                 }) => {
                                     return (
                                         <FormItem>
                                             <FormLabel>Thumbnail</FormLabel>
@@ -377,7 +380,7 @@ const FormSectionSuspense = ({ videoId }: FormSectionProps) => {
                                                         </DropdownMenuTrigger>
                                                         <DropdownMenuContent align="start" side="right">  
                                                             <DropdownMenuItem 
-                                                              onClick={() => setThumbnailModalOpen(true)}
+                                                                onClick={() => setThumbnailModalOpen(true)}
                                                             >
                                                                 <ImagePlusIcon className="size-4 mr-1" />
                                                                 Change

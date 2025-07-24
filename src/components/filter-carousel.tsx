@@ -14,7 +14,6 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Item } from "@radix-ui/react-accordion";
 
 interface FilterCarouselProps {
     value?: string | null;

@@ -5,7 +5,6 @@ import { useAuth, useClerk } from "@clerk/nextjs";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useSubscription } from "@/modules/subscription/hooks/use-subscription";
-import { VideoGridCard } from "@/modules/videos/ui/components/video-grid-card";
 import { SubscriptionButton } from "@/modules/subscription/ui/components/subscription-button";
 import { Skeleton } from "@/components/ui/skeleton";
 

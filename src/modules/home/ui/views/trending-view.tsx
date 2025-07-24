@@ -1,5 +1,3 @@
-import { CategoriesSection } from "../section/category-section";
-import { HomeVideosSection } from "../section/home-videos-section";
 import { TrendingVideosSection } from "../section/trending-videos-section";
 
 

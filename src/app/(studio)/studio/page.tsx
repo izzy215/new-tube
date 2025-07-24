@@ -2,7 +2,10 @@ import { DEFAULT_LIMIT } from "@/constants";
 import { StudioView } from "@/modules/studio/ui/views/studio-view";
 import { HydrateClient, trpc } from "@/trpc/server";
 
-const Page = async() => {
+//강제 동적 렌더링
+export const dynamic  = "force-dynamic";
+
+const Page = () => {
     void trpc.studio.getMany.prefetchInfinite({
         limit: DEFAULT_LIMIT,
     });

@@ -1,4 +1,3 @@
-import { Avatar } from "@/components/ui/avatar";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 
